@@ -87,7 +87,7 @@ html{
 #content .content-section{
     color: #fff;
     padding: 64px 16px 0 16px;
-    max-width: 800px;
+    max-width: 1000px;
     margin: auto;
 }
 
@@ -166,6 +166,7 @@ button:hover{
 
 /* bảng thi đấu */
 .tournament{
+    width: 100%;
     text-align: center;
     margin: auto;
 }
