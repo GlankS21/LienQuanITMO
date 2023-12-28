@@ -104,9 +104,7 @@
 
         function generateRandom() {
             var values = [': A', ': B'];
-            var randomIndex = Math.floor(Math.random() * values.length);
-            var randomValue = values[randomIndex];
-            document.getElementById('result').textContent = randomValue;
+            document.getElementById('result').textContent = values[Math.floor(Math.random() * values.length)];
         }
     </script>
   
