@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title> Liên Quân ITMO</title>
+</head>
+<body>
+    <!-- Header + Navigation -->
+    <div id="header">
+        <ul id="nav">
+            <div><a id ="main" class="logo" href=""><img src="https://cdn.vn.garenanow.com/web/kg/home/images/logo-new.png" alt=""></a></div>
+            <li><a id="formula" href="#content1">Thể thức</a></li>
+            <li><a id="league" href="#content2">Bảng đấu</a></li>
+        </ul>
+    </div>
+    <!-- Slider -->
+    <div id="slider">
+        <section class="slider-img">
+           <img src="https://cdn.vn.garenanow.com/web/kg/home/images/img-share.jpg" alt="">
+        </section>
+    </div>
+
+    <!-- Content -->
+    <div id="content">
+        <!-- Thể thức -->
+        <div id="content1" class="content-section">
+            <h2 class="text-center section-heading">Hình thức thi đấu</h2>
+            <p class="section-sub-heading">1. Thời gian thi đấu</p>
+            <p class="text">Ngày 02 / 01</p>
+            <p class="text">Thời gian bắt đầu vào lúc 14:00. Thời gian kết thúc dự kiến 20:00 (Có giải lao)</p>
+            <p class="section-sub-heading">2. Cách thức thi đấu</p>
+            <p class="text">Giải đấu được chia thành 2 bảng A và B</p>
+            <p class="text">Bảng A gồm 3 đội thi đấu theo hình thức vòng tròn và có 2 vé tiến vào bán kết.
+                Mỗi đội thắng sẽ được 1 điểm và đội thua sẽ không có điểm nào. 2 đội có số điểm cao hơn sẽ là 2 đội được tiến vào bán kết.
+                Với trường hợp đặc biệt 3 điểm bằng nhau, chúng ta sẽ chọn ra đội vào bán kết bằng cách tính thời gian thi đấu:
+                2 đội thắng có thời gian thi đấu nhanh nhất sẽ giành được tấm vé vào bán kết.</p>
+            <p class="text">Bảng B gồm 2 đội và sẽ đánh với nhau để tranh giành chiếc vé ở bảng B.</p>
+            <p class="text">Về phần đội thua các bạn vẫn có cơ hội để tham gia vào bán kết!
+                2 đội thua của bàng A và B sẽ tranh giành chiếc vé cuối cùng vào bán kết!</p>
+            <p style="font-weight: bold;" class="text">Lưu ý: Với các trận vòng bảng chúng ta chơi BO1
+                Bán kết và chung kết sẽ chơi với hình thức BO3</p>
+
+            <p class="section-sub-heading">3. Quá trình thi đấu</p>
+            <p class="text">Trận đấu sẽ diễn ra với hình thức cấm chọn. Đối với các trận đấu B03.
+                Các đội thi đấu không được sử dụng lại tướng đã sử dụng trong trận đấu trước đó 
+                (đối với trận thứ 3 thì có thể sử dụng lại tướng đã sử dụng trong trận thứ 1)</p>
+            <p class="text">Trong trường hợp trận đấu đã bắt đầu quá 5' mà tất cả các thành viên trong đội chưa có mặt đầy đủ,
+                 đội đó sẽ bị tính là thua ván đấu đó"</p>
+        </div>
+
+        <!-- Bảng đấu -->
+        <div id="content2" class="content-section">
+            <h2 class="text-center section-heading">Bảng đấu</h2>
+            <p class="section-sub-heading">1. Bốc thăm bảng đấu</p>
+            <p class="text" style="display: inline-block;">Hãy chọn team của bạn: </p>
+            <div class="dropdown text">
+                <span id="dropdown-text" onclick="toggleDropdown()">Click vào đây</span>
+                <div class="dropdown-content" id="myDropdown">
+                  <a onclick="changeText('Chưa chơi đã thua')">Chưa chơi đã thua</a>
+                  <a onclick="changeText('đội anh Nam')">đội anh Nam</a>
+                  <a onclick="changeText('404 Not Found')">404 Not Found</a>
+                  <a onclick="changeText('Winter circus')">Winter circus</a>
+                  <a onclick="changeText('Bronze team')">Bronze team</a>
+                </div>
+            </div>
+            <p></p>
+            <button class = "text" style="display:inline;" onclick="generateRandom()">Random bảng thi đấu <span id="result"></span> </button>
+
+            <p class="section-sub-heading">2. Lịch thi đấu</p>
+            <img class="tournament" src="./assets/image/playoffs-aic-2020.jpg" alt="">
+        </div>
+    </div>
+
+
+    
+    <!-- Footer -->
+    <div id="footer">
+        <img src="https://lienquan.garena.vn/asset/images/logo-footer.png?v=2" alt="">
+    </div>
+    
+    <!-- Script -->
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("myDropdown");
+            if (dropdown.style.display === "block") dropdown.style.display = "none";
+            else dropdown.style.display = "block";
+        }
+        
+        function changeText(selectedText) {
+            var dropdownText = document.getElementById("dropdown-text");
+            dropdownText.textContent = selectedText;
+            toggleDropdown();
+        }
+        
+        window.onclick = function(event) {
+            var dropdown = document.getElementById("myDropdown");
+            var dropdownText = document.getElementById("dropdown-text");
+            if (!event.target.matches('.dropdown') && !event.target.matches('#dropdown-text')) dropdown.style.display = "none";
+        }
+
+        function generateRandom() {
+            var values = [': A', ': B'];
+            var randomIndex = Math.floor(Math.random() * values.length);
+            var randomValue = values[randomIndex];
+            document.getElementById('result').textContent = randomValue;
+        }
+    </script>
+  
+</body>
+</html>
